@@ -1,0 +1,50 @@
+@{
+    ViewData["Title"] = "Square Root Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">The Square Root Calculator </h1>
+</div>
+
+@{ 
+    try {
+        if(ViewBag.Result1 > ViewBag.Result2){
+            <div>
+            <p> First Number @ViewBag.N1 with Square Root: @ViewBag.Result1 has a higher Square Root than Second Number @ViewBag.N2 with Square Root: @ViewBag.Result2</p>
+            </div>
+
+        }else if(ViewBag.Result2 > ViewBag.Result1){
+            <div>
+                <p> Second Number Result @ViewBag.N2 with Square Root: @ViewBag.Result2 has a higher Square Root than First Number @ViewBag.N1 with Square Root: @ViewBag.Result1</p>
+            </div>
+
+        }else if(ViewBag.Result1 == ViewBag.Result2){
+            <div>
+                <p> First Number @ViewBag.N1 has the same result with Second Number @ViewBag.N2 which is: @ViewBag.Result2 please enter another value! </p>
+            </div>
+
+        }else if (ViewBag.N1 && ViewBag.N2 > 0 ) {
+            <div>
+                <p> Error! negative number </p>
+            </div>
+
+        }
+    } 
+    catch (FormatException) {
+        <div>
+            <p> Wrong Input... PLEASE ENTER A NUMBER. </p>
+        </div>
+    }
+    
+}
+
+<body>
+    <form asp-controller="Calc" asp-action="SquareRoot" method="POST">
+
+        <input type="number" placeholder="First Number" name="firstNumber"/>
+        <input type="number" placeholder="Second Number" name="secondNumber"/>
+        <button type="submit">Submit</button>
+
+    </form>
+    
+</body>
